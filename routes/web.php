@@ -22,3 +22,7 @@ Route::post('/basiccrudAdd','CrudController@BasicCrudAdd');
 Route::post('/basiccruddelete','CrudController@BasicCrudDelete');
 Route::post('/basicCrudDetails','CrudController@BasicCrudDetails');
 Route::post('/basicCrudUpdateClick','CrudController@BasicCrudUpdate');
+
+Route::get('/othercrud','CrudController@otherCrudIndex');
+Route::get('/otherCrudData','CrudController@AllOtherCrudData');
+Route::post('/othercruddelete','CrudController@OtherCrudDelete');

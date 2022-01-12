@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\BasicCrudModel;
+use App\OtherCrudModel;
 
 class CrudController extends Controller
 {
@@ -81,6 +82,30 @@ class CrudController extends Controller
         }else{
             return 0;
         }
+
+    }
+
+    function otherCrudIndex(){
+
+    	return view('OtherCrud');
+    }
+
+    function AllOtherCrudData(){
+
+        $otherCrudData = json_encode(OtherCrudModel::all());
+
+  		return $otherCrudData;
+    }
+
+    function OtherCrudDelete(Request $req){
+
+    	$id = $req->input('id');
+    	$result = OtherCrudModel::where('id','=',$id)->delete();
+    	if($result == true){
+    		return 1;
+    	}else{
+    		return 0;
+    	}
 
     }
 }
