@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('Home'); });
 Route::get('/dashboard', function () { return view('Home'); });
 
-Route::get('/basiccrud','CrudController@crudIndex');
-Route::post('/AddInfo','CrudController@crudAdd');
+Route::get('/basiccrud','CrudController@basicCrudIndex');
+Route::get('/basicCrudData','CrudController@AllBasicCrudData');
+Route::post('/basiccrudAdd','CrudController@BasicCrudAdd');
+Route::post('/basiccruddelete','CrudController@BasicCrudDelete');
+Route::post('/basicCrudDetails','CrudController@BasicCrudDetails');
+Route::post('/basicCrudUpdateClick','CrudController@BasicCrudUpdate');
