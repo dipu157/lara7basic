@@ -92,7 +92,9 @@ class CrudController extends Controller
 
     function AllOtherCrudData(){
 
-        $otherCrudData = json_encode(OtherCrudModel::all());
+        $otherCrudData = json_encode(OtherCrudModel::with('BasicCrud')->get());
+
+        //dd($otherCrudData);
 
   		return $otherCrudData;
     }
@@ -108,4 +110,21 @@ class CrudController extends Controller
     	}
 
     }
+
+    function photoUpload(Request $request){
+
+        $id = $request->id;
+        //dd($id);
+        $photoPath = $request->file('photo')->store('public'); 
+        $photoName = (explode('/',$photoPath))[1];
+        $host = $_SERVER['HTTP_HOST'];
+        $location = "http://localhost/lara7basic/storage/app/public/".$photoName;
+ 
+        $result = OtherCrudModel::where('id','=',$id)->update(['photo'=>$location]);
+        if($result == true){
+            return 1;
+        }else{
+            return 0;
+        }
+     }
 }

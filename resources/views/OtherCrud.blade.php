@@ -13,7 +13,7 @@
           <tr>
             <th class="th-sm">UserName</th>
             <th class="th-sm">Gender</th>
-            <th class="th-sm">Speciality</th>            
+            <th class="th-sm">Speciality</th>
             <th class="th-sm">DOB</th>
             <th class="th-sm">Photo</th>
             <th class="th-sm">Status</th>
@@ -49,6 +49,28 @@
   </div>
 </div>
 
+<!-- Modal For Add Image -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-3 text-center">
+        <h5 class="modal-title">Add Photo</h5>
+        <input id="ImgId" value="" type="text">
+      </div>
+
+      <div class="modal-body">
+        <input id="imgInput" type="file">
+        <img style="width: 100px; height: 100px;" src="" id="imgPreview">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="photoAddBtn" type="button" class="btn btn-success">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal For Delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -57,7 +79,7 @@
 
       <div class="modal-body text-center">
         <h6>Are You Sure about Delete ?</h6>
-        <input id="DeleteId" value="" type="text">
+        <input id="DeleteId" value="" type="hidden">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,58 +92,112 @@
 
 @section('script')
 <script type="text/javascript">
-   getOtherCrudData();
+  getOtherCrudData();
 
-function getOtherCrudData() {
+  function getOtherCrudData() {
 
-  axios.get('/otherCrudData')
-    .then(function(response) {
+    axios.get('/otherCrudData')
+      .then(function(response) {
 
-      if (response.status == 200) {
+        if (response.status == 200) {
 
-        $('#mainDiv').removeClass('d-none');
-        $('#loadDiv').addClass('d-none');
+          $('#mainDiv').removeClass('d-none');
+          $('#loadDiv').addClass('d-none');
 
-        $('#TableId').DataTable().destroy();
-        $('#othercrud_table').empty();
+          $('#TableId').DataTable().destroy();
+          $('#othercrud_table').empty();
 
-        var dataJSON = response.data;
-        $.each(dataJSON, function(i, item) {
-          $('<tr>').html(
-            "<td>" + dataJSON[i].basiccrud_id + "</td>" +
-            "<td>" + dataJSON[i].gender + "</td>" +
-            "<td>" + dataJSON[i].speciality + "</td>" +
-            "<td>" + dataJSON[i].dob + "</td>" +
-            "<td>" + dataJSON[i].photo + "</td>" +
-            "<td>" + dataJSON[i].status + "</td>" +
-            "<td><a class='PhotoBtn btn btn-info btn-sm' data-id=" + dataJSON[i].id + ">Upload</a></td>" +
-            "<td><a class='EditBtn' data-id=" + dataJSON[i].id + "><i class='fas fa-edit'></i></a> &nbsp; &nbsp;" +
-            "<a class='DeleteBtn' data-id=" + dataJSON[i].id + " ><i class='fas fa-trash-alt'></i></a></td>"
-          ).appendTo('#othercrud_table');
-        });
+          var dataJSON = response.data;
 
-        //Delete Icon
-        $('.DeleteBtn').click(function() {
+
+          $.each(dataJSON, function(i, item) {
+            var gender = dataJSON[i].gender == 'm' ? 'Male' : 'Female';
+            var status = dataJSON[i].status == 1 ? 'Active' : 'Inactive';
+            $('<tr>').html(
+              "<td>" + dataJSON[i].basic_crud['full_name'] + "</td>" +
+              "<td>" + gender + "</td>" +
+              "<td>" + dataJSON[i].speciality + "</td>" +
+              "<td>" + dataJSON[i].dob + "</td>" +
+              "<td><img class='table-img' alt='photo' src=" + dataJSON[i].photo + "></td>" +
+              "<td>" + status + "</td>" +
+              "<td><a class='PhotoBtn btn btn-info btn-sm' data-id=" + dataJSON[i].id + ">Upload</a></td>" +
+              "<td><a class='EditBtn' data-id=" + dataJSON[i].id + "><i class='fas fa-edit'></i></a> &nbsp; &nbsp;" +
+              "<a class='DeleteBtn' data-id=" + dataJSON[i].id + " ><i class='fas fa-trash-alt'></i></a></td>"
+            ).appendTo('#othercrud_table');
+          });
+
+          //Delete Icon
+          $('.DeleteBtn').click(function() {
             var id = $(this).data('id');
             $('#deleteModal').modal('show');
             $('#DeleteId').val(id);
           })
 
+          // Upload Button/Icon Click to Modal Open
 
-      } else {
+          $('.PhotoBtn').click(function() {
+            var id = $(this).data('id');
+            $('#photoModal').modal('show');
+            $('#ImgId').val(id);
+          });
+
+
+        } else {
+          $('#errDiv').removeClass('d-none');
+          $('#loadDiv').addClass('d-none');
+        }
+
+      })
+      .catch(function(error) {
         $('#errDiv').removeClass('d-none');
         $('#loadDiv').addClass('d-none');
-      }
+      });
+  }
 
-    })
-    .catch(function(error) {
-      $('#errDiv').removeClass('d-none');
-      $('#loadDiv').addClass('d-none');
-    });
-}
+  // Show the image on the preview box
+  $('#imgInput').change(function() {
+    var reader = new FileReader();
+    reader.readAsDataURL(this.files[0]);
+    reader.onload = function(e) {
+      var imageSource = e.target.result;
+      $('#imgPreview').attr('src', imageSource);
+    }
+  });
 
- //Confirm Delete
- $('#DelConfirmBtn').click(function() {
+  // Click Photo Save Button
+  $('#photoAddBtn').on('click', function() {
+
+    var id = $('#ImgId').val();
+
+    $('#photoAddBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+
+    var photoFile = $('#imgInput').prop('files')[0];
+    var formData = new FormData();
+    formData.append('photo', photoFile); // photo is the key && photoFile is Value
+    var url = "/photoUp/"+id;
+
+    axios.post(url, formData)
+      .then(function(response) {
+
+        if (response.status == 200 && response.data == 1) {
+          $('#photoModal').modal('hide');
+          $('#photoAddBtn').html('Upload');
+          toastr.success("Photo Upload Successfully");
+          getOtherCrudData();
+        } else {
+          $('#photoModal').modal('hide');
+          $('#photoAddBtn').html('Upload');
+          toastr.error("Photo Upload Failed");
+          getOtherCrudData();
+        }
+
+      }).catch(function(error) {
+        alert(error);
+      })
+  });
+
+  //Confirm Delete
+  $('#DelConfirmBtn').click(function() {
     var id = $('#DeleteId').val();
     otherCrudDelete(id);
   })
