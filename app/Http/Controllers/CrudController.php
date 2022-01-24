@@ -87,7 +87,11 @@ class CrudController extends Controller
 
     function otherCrudIndex(){
 
-    	return view('OtherCrud');
+        $BasicCrud = BasicCrudModel::query()->pluck('full_name','id');
+
+       // dd($BasicCrud);
+
+    	return view('OtherCrud',compact('BasicCrud'));
     }
 
     function AllOtherCrudData(){
@@ -127,4 +131,23 @@ class CrudController extends Controller
             return 0;
         }
      }
+
+     function OtherCrudAdd(Request $req){
+
+        $username = $req->input('username');
+        $gender = $req->input('gender');
+        $speciality = $req->input('speciality');
+
+
+        $result = OtherCrudModel::insert([
+            'basiccrud_id'=>$username, 
+            'gender'=>$gender,
+            'speciality'=>$speciality
+        ]);
+        if($result == true){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }

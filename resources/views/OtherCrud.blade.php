@@ -76,18 +76,11 @@
                         <div class="card text-primary bg-gray">
                             <div class="card-body">
                                 <div class="form-group row" id="md-name">
-                                    <label class="col-sm-4 col-form-label text-md-right" for="name">
+                                    <label class="col-sm-4 col-form-label text-md-right" for="basiccrud_id">
                                         User Name
                                     </label>
                                     <div class="col-sm-8">
-                                        <select class="browser-default custom-select">
-                                            <option selected="">
-                                                Select UserName
-                                            </option>
-                                            <option value="1">
-                                                One
-                                            </option>
-                                        </select>
+                                        {!! Form::select('basiccrud_id',$BasicCrud,null,array('id'=>'basiccrud_id','class'=>'form-control d-block')) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row" id="md-name">
@@ -118,7 +111,7 @@
                                     </label>
                                     <div class="col-sm-8">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="speciality1" name="speciality" type="checkbox" value="PHP">
+                                            <input class="form-check-input" id="speciality1" name="speciality[]" type="checkbox" value="PHP">
                                                 <label class="form-check-label" for="speciality1">
                                                     PHP
                                                 </label>
@@ -126,7 +119,7 @@
                                         </div>
                                         <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="speciality2" name="speciality" type="checkbox" value="MySql">
+                                            <input class="form-check-input" id="speciality2" name="speciality[]" type="checkbox" value="MySql">
                                                 <label class="form-check-label" for="speciality2">
                                                     MySql
                                                 </label>
@@ -134,14 +127,14 @@
                                         </div>
                                         <!-- Material inline 3 -->
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="speciality3" name="speciality" type="checkbox" value="Java">
+                                            <input class="form-check-input" id="speciality3" name="speciality[]" type="checkbox" value="Java">
                                                 <label class="form-check-label" for="speciality3">
                                                     Java
                                                 </label>
                                             </input>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="speciality4" name="speciality" type="checkbox" value="Oracle">
+                                            <input class="form-check-input" id="speciality4" name="speciality[]" type="checkbox" value="Oracle">
                                                 <label class="form-check-label" for="speciality4">
                                                     Oracle
                                                 </label>
@@ -173,7 +166,7 @@
                 <a class="btn btn-danger waves-effect" data-dismiss="modal" type="button">
                     Cancel
                 </a>
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary" type="button" class="btn btn-success" id="AddBtnClickId">
                     Save
                 </button>
             </div>
@@ -342,6 +335,58 @@
   $('#adNewId').click(function() {
     $('#addModal').modal('show');
   });
+
+
+  //Confirm Save
+  $('#AddBtnClickId').click(function() {
+    var username = $('#basiccrud_id').val();
+    var gender = $('input[name="gender"]:checked').val();
+    var Allspeciality = $('input[type=checkbox]:checked').map(function(_, el) {
+        return $(el).val();
+    }).get();
+
+    //var speciality=implode(',' , $Allspeciality);    
+
+    alert(Allspeciality);
+
+    othercrudAddClick(username, gender, speciality);
+  })
+
+
+  // Method for Click Add Btn
+  function othercrudAddClick(username, gender, speciality) {
+
+    if (gender.length == 0) {
+      alert('Gender Required');
+    } else {
+      $('#AddBtnClickId').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+      axios.post('/othercrudAdd', {
+
+          username: username,
+          gender: gender,
+          speciality: speciality,
+
+        })
+        .then(function(response) {
+          $('#AddBtnClickId').html("Add");
+          if (response.data == 1) {
+            $('#addModal').modal('hide');
+            toastr.success('Save Successfully');
+            getOtherCrudData();
+          } else {
+            $('#addModal').modal('hide');
+            toastr.error('Error in Save');
+            getOtherCrudData();
+          }
+        })
+        .catch(function(error) {
+          $('#addModal').modal('hide');
+            toastr.error('Error in Save');
+            getOtherCrudData();
+        });
+    }
+
+  }
 
   //Confirm Delete
   $('#DelConfirmBtn').click(function() {
