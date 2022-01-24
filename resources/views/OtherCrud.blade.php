@@ -341,13 +341,12 @@
   $('#AddBtnClickId').click(function() {
     var username = $('#basiccrud_id').val();
     var gender = $('input[name="gender"]:checked').val();
-    var Allspeciality = $('input[type=checkbox]:checked').map(function(_, el) {
+    var speciality = $('input[type=checkbox]:checked').map(function(_, el) {
         return $(el).val();
     }).get();
 
-    //var speciality=implode(',' , $Allspeciality);    
+    var speciality=speciality.toString();    
 
-    alert(Allspeciality);
 
     othercrudAddClick(username, gender, speciality);
   })
