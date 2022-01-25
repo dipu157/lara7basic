@@ -89,9 +89,11 @@ class CrudController extends Controller
 
         $BasicCrud = BasicCrudModel::query()->pluck('full_name','id');
 
+        $data = OtherCrudModel::all();
+
        // dd($BasicCrud);
 
-    	return view('OtherCrud',compact('BasicCrud'));
+    	return view('OtherCrud',compact('BasicCrud','data'));
     }
 
     function AllOtherCrudData(){
@@ -152,5 +154,13 @@ class CrudController extends Controller
         }else{
             return 0;
         }
+    }
+
+    function OtherCrudDetails(Request $req){
+
+        $id = $req->input('id');
+        $data = json_encode(BasicCrudModel::where('id','=',$id)->get());
+
+        return $data;
     }
 }

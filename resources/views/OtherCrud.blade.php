@@ -90,17 +90,17 @@
                                     <div class="col-sm-8">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="gender1" name="gender" type="radio" value="M">
-                                                <label class="form-check-label" for="gender1">
-                                                    Male
-                                                </label>
+                                            <label class="form-check-label" for="gender1">
+                                                Male
+                                            </label>
                                             </input>
                                         </div>
                                         <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="gender2" name="gender" type="radio" value="F">
-                                                <label class="form-check-label" for="gender2">
-                                                    Female
-                                                </label>
+                                            <label class="form-check-label" for="gender2">
+                                                Female
+                                            </label>
                                             </input>
                                         </div>
                                     </div>
@@ -112,39 +112,39 @@
                                     <div class="col-sm-8">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality1" name="speciality[]" type="checkbox" value="PHP">
-                                                <label class="form-check-label" for="speciality1">
-                                                    PHP
-                                                </label>
+                                            <label class="form-check-label" for="speciality1">
+                                                PHP
+                                            </label>
                                             </input>
                                         </div>
                                         <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality2" name="speciality[]" type="checkbox" value="MySql">
-                                                <label class="form-check-label" for="speciality2">
-                                                    MySql
-                                                </label>
+                                            <label class="form-check-label" for="speciality2">
+                                                MySql
+                                            </label>
                                             </input>
                                         </div>
                                         <!-- Material inline 3 -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality3" name="speciality[]" type="checkbox" value="Java">
-                                                <label class="form-check-label" for="speciality3">
-                                                    Java
-                                                </label>
+                                            <label class="form-check-label" for="speciality3">
+                                                Java
+                                            </label>
                                             </input>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality4" name="speciality[]" type="checkbox" value="Oracle">
-                                                <label class="form-check-label" for="speciality4">
-                                                    Oracle
-                                                </label>
+                                            <label class="form-check-label" for="speciality4">
+                                                Oracle
+                                            </label>
                                             </input>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality5" name="speciality" type="checkbox" value="Python">
-                                                <label class="form-check-label" for="speciality5">
-                                                    Python
-                                                </label>
+                                            <label class="form-check-label" for="speciality5">
+                                                Python
+                                            </label>
                                             </input>
                                         </div>
                                     </div>
@@ -154,7 +154,73 @@
                                         DOB
                                     </label>
                                     <div class="col-sm-8">
-                                    <input type="text" name="dob" id="dob" class="form-control" value="{!! \Carbon\Carbon::now()->format('d-m-Y') !!}" readonly />
+                                        <input type="text" name="dob" id="dob" class="form-control" value="{!! \Carbon\Carbon::now()->format('d-m-Y') !!}" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a class="btn btn-danger waves-effect" data-dismiss="modal" type="button">
+                    Cancel
+                </a>
+                <button class="btn btn-primary" type="button" class="btn btn-success" id="AddBtnClickId">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal For Edit  -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="editOtherCrudModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header" style="background-color: #17A2B8;">
+                <p class="heading">
+                    Edit User
+                </p>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card text-primary bg-gray">
+                            <div class="card-body">
+                                <div class="form-group row" id="md-name">
+                                    <label class="col-sm-4 col-form-label text-md-right" for="basiccrud_id">
+                                        User Name
+                                    </label>
+                                    <div class="col-sm-8">
+                                        {!! Form::select('basiccrud_id',$BasicCrud,$data->basiccrud_id,array('id'=>'basiccrud_id','class'=>'form-control d-block')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row" id="md-name">
+                                    <label class="col-sm-4 col-form-label text-md-right" for="gender">
+                                        Gender
+                                    </label>
+                                    <div class="col-sm-8">
+                                        {!! Form::select('gender',['M' => 'Male', 'F' => 'Female'],$data->gender,array('id'=>'gender','class'=>'form-control d-block')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row" id="md-name">
+                                    <label class="col-sm-4 col-form-label text-md-right" for="speciality">
+                                        Speciality
+                                    </label>
+                                    <div class="col-sm-8">
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label text-md-right" for="dob">
+                                        DOB
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="dob" class="form-control" id="dob" required value="{!! $data->dob !!}" />
                                     </div>
                                 </div>
                             </div>
@@ -187,8 +253,8 @@
             </div>
             <div class="modal-body">
                 <input id="imgInput" type="file">
-                    <img id="imgPreview" src="" style="width: 100px; height: 100px;">
-                    </img>
+                <img id="imgPreview" src="" style="width: 100px; height: 100px;">
+                </img>
                 </input>
             </div>
             <div class="modal-footer">
@@ -230,205 +296,288 @@
 <script type="text/javascript">
     getOtherCrudData();
 
-  function getOtherCrudData() {
+    function getOtherCrudData() {
 
-    axios.get('/otherCrudData')
-      .then(function(response) {
+        axios.get('/otherCrudData')
+            .then(function(response) {
 
-        if (response.status == 200) {
+                if (response.status == 200) {
 
-          $('#mainDiv').removeClass('d-none');
-          $('#loadDiv').addClass('d-none');
+                    $('#mainDiv').removeClass('d-none');
+                    $('#loadDiv').addClass('d-none');
 
-          $('#TableId').DataTable().destroy();
-          $('#othercrud_table').empty();
+                    $('#TableId').DataTable().destroy();
+                    $('#othercrud_table').empty();
 
-          var dataJSON = response.data;
-
-
-          $.each(dataJSON, function(i, item) {
-            var gender = dataJSON[i].gender == 'M' ? 'Male' : 'Female';
-            var status = dataJSON[i].status == 1 ? 'Active' : 'Inactive';
-            $('<tr>').html(
-              "<td>" + dataJSON[i].basic_crud['full_name'] + "</td>" +
-              "<td>" + gender + "</td>" +
-              "<td>" + dataJSON[i].speciality + "</td>" +
-              "<td>" + dataJSON[i].dob + "</td>" +
-              "<td><img class='table-img' alt='photo' src=" + dataJSON[i].photo + "></td>" +
-              "<td>" + status + "</td>" +
-              "<td><a class='PhotoBtn btn btn-info btn-sm' data-id=" + dataJSON[i].id + ">Upload</a></td>" +
-              "<td><a class='EditBtn' data-id=" + dataJSON[i].id + "><i class='fas fa-edit'></i></a> &nbsp; &nbsp;" +
-              "<a class='DeleteBtn' data-id=" + dataJSON[i].id + " ><i class='fas fa-trash-alt'></i></a></td>"
-            ).appendTo('#othercrud_table');
-          });
-
-          //Delete Icon
-          $('.DeleteBtn').click(function() {
-            var id = $(this).data('id');
-            $('#deleteModal').modal('show');
-            $('#DeleteId').val(id);
-          })
-
-          // Upload Button/Icon Click to Modal Open
-
-          $('.PhotoBtn').click(function() {
-            var id = $(this).data('id');
-            $('#photoModal').modal('show');
-            $('#ImgId').val(id);
-          });
+                    var dataJSON = response.data;
 
 
-        } else {
-          $('#errDiv').removeClass('d-none');
-          $('#loadDiv').addClass('d-none');
-        }
+                    $.each(dataJSON, function(i, item) {
+                        var gender = dataJSON[i].gender == 'M' ? 'Male' : 'Female';
+                        var status = dataJSON[i].status == 1 ? 'Active' : 'Inactive';
+                        $('<tr>').html(
+                            "<td>" + dataJSON[i].basic_crud['full_name'] + "</td>" +
+                            "<td>" + gender + "</td>" +
+                            "<td>" + dataJSON[i].speciality + "</td>" +
+                            "<td>" + dataJSON[i].dob + "</td>" +
+                            "<td><img class='table-img' alt='photo' src=" + dataJSON[i].photo + "></td>" +
+                            "<td>" + status + "</td>" +
+                            "<td><a class='PhotoBtn btn btn-info btn-sm' data-id=" + dataJSON[i].id + ">Upload</a></td>" +
+                            "<td><a class='EditBtn' data-id=" + dataJSON[i].id + "><i class='fas fa-edit'></i></a> &nbsp; &nbsp;" +
+                            "<a class='DeleteBtn' data-id=" + dataJSON[i].id + " ><i class='fas fa-trash-alt'></i></a></td>"
+                        ).appendTo('#othercrud_table');
+                    });
 
-      })
-      .catch(function(error) {
-        $('#errDiv').removeClass('d-none');
-        $('#loadDiv').addClass('d-none');
-      });
-  }
+                    //Delete Icon
+                    $('.DeleteBtn').click(function() {
+                        var id = $(this).data('id');
+                        $('#deleteModal').modal('show');
+                        $('#DeleteId').val(id);
+                    })
 
-  // Show the image on the preview box
-  $('#imgInput').change(function() {
-    var reader = new FileReader();
-    reader.readAsDataURL(this.files[0]);
-    reader.onload = function(e) {
-      var imageSource = e.target.result;
-      $('#imgPreview').attr('src', imageSource);
-    }
-  });
+                    //Edit Icon
+                    $('.EditBtn').click(function() {
+                        var id = $(this).data('id');
 
-  // Click Photo Save Button
-  $('#photoAddBtn').on('click', function() {
+                        $('#EditId').val(id);
+                        OtherCrudUpdate(id);
+                        $('#editOtherCrudModal').modal('show');
+                    })
 
-    var id = $('#ImgId').val();
+                    // Upload Button/Icon Click to Modal Open
 
-    $('#photoAddBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
-
-    var photoFile = $('#imgInput').prop('files')[0];
-    var formData = new FormData();
-    formData.append('photo', photoFile); // photo is the key && photoFile is Value
-    var url = "/photoUp/"+id;
-
-    axios.post(url, formData)
-      .then(function(response) {
-
-        if (response.status == 200 && response.data == 1) {
-          $('#photoModal').modal('hide');
-          $('#photoAddBtn').html('Upload');
-          toastr.success("Photo Upload Successfully");
-          getOtherCrudData();
-        } else {
-          $('#photoModal').modal('hide');
-          $('#photoAddBtn').html('Upload');
-          toastr.error("Photo Upload Failed");
-          getOtherCrudData();
-        }
-
-      }).catch(function(error) {
-        alert(error);
-      })
-  });
-
-  //Add New Btn Clik
-  $('#adNewId').click(function() {
-    $('#addModal').modal('show');
-  });
-
-  $( "#dob" ).datetimepicker({
-                format:'Y-m-d',
-                timepicker: false,
-                closeOnDateSelect: true,
-                scrollInput : false,
-                inline:false
- });
+                    $('.PhotoBtn').click(function() {
+                        var id = $(this).data('id');
+                        $('#photoModal').modal('show');
+                        $('#ImgId').val(id);
+                    });
 
 
-  //Confirm Save
-  $('#AddBtnClickId').click(function() {
-    var username = $('#basiccrud_id').val();
-    var gender = $('input[name="gender"]:checked').val();
-    var speciality = $('input[type=checkbox]:checked').map(function(_, el) {
-        return $(el).val();
-    }).get();
-    var dob = $('#dob').val();
+                } else {
+                    $('#errDiv').removeClass('d-none');
+                    $('#loadDiv').addClass('d-none');
+                }
 
-    var speciality=speciality.toString();  
-    
-    // alert(dob);
-
-
-    othercrudAddClick(username, gender, speciality, dob);
-  })
-
-
-  // Method for Click Add Btn
-  function othercrudAddClick(username, gender, speciality, dob) {
-
-    if (gender.length == 0) {
-      alert('Gender Required');
-    } else {
-      $('#AddBtnClickId').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
-      axios.post('/othercrudAdd', {
-
-          username: username,
-          gender: gender,
-          speciality: speciality,
-          dob: dob,
-
-        })
-        .then(function(response) {
-          $('#AddBtnClickId').html("Add");
-          if (response.data == 1) {
-            $('#addModal').modal('hide');
-            toastr.success('Save Successfully');
-            getOtherCrudData();
-          } else {
-            $('#addModal').modal('hide');
-            toastr.error('Error in Save');
-            getOtherCrudData();
-          }
-        })
-        .catch(function(error) {
-          $('#addModal').modal('hide');
-            toastr.error('Error in Save');
-            getOtherCrudData();
-        });
+            })
+            .catch(function(error) {
+                $('#errDiv').removeClass('d-none');
+                $('#loadDiv').addClass('d-none');
+            });
     }
 
-  }
 
-  //Confirm Delete
-  $('#DelConfirmBtn').click(function() {
-    var id = $('#DeleteId').val();
-    otherCrudDelete(id);
-  })
+    // Method for Edit Icon Click
+    function otherCrudUpdate(detailsid) {
 
-  // Method for Confirm Delete Data
-  function otherCrudDelete(delid) {
-    //Animation
-    $('#DelConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+        axios.post('/otherCrudDetails', {
+                id: detailsid
+            })
+            .then(function(response) {
+                if (response.status == 200) {
 
-    axios.post('/othercruddelete', {
-        id: delid
-      })
-      .then(function(response) {
-        $('#DelConfirmBtn').html("Delete");
-        if (response.data == 1) {
-          $('#deleteModal').modal('hide');
-          toastr.success('Delete Successfully');
-          getOtherCrudData();
+                    var jsonData = response.data;
+                    $('#nameIdU').val(jsonData[0].full_name);
+                    $('#emailIdU').val(jsonData[0].email);
+                    $('#mobileIdU').val(jsonData[0].mobile);
+                    $('#addressIdU').val(jsonData[0].address);
+
+                } else {
+                    $('#errDiv').removeClass('d-none');
+                    $('#loadDiv').addClass('d-none');
+                }
+            })
+            .catch(function(error) {
+                $('#errDiv').removeClass('d-none');
+                $('#loadDiv').addClass('d-none');
+            });
+    }
+
+
+    //Confirm Edit
+    $('#UpdateConfirmBtn').click(function() {
+        var id = $('#EditId').val();
+        var name = $('#nameIdU').val();
+        var email = $('#emailIdU').val();
+        var mobile = $('#mobileIdU').val();
+        var address = $('#addressIdU').val();
+        UpdateClick(id, name, email, mobile, address);
+    })
+
+    // Method for Click Update Btn
+    function UpdateClick(id, name, email, mobile, address) {
+
+        if (name.length == 0) {
+            toastr.error('Name Required');
+        } else if (mobile.length == 0) {
+            toastr.error('mobile Required');
+        } else if (address.length == 0) {
+            toastr.error('address Required');
         } else {
-          $('#deleteModal').modal('hide');
-          toastr.error('Error in Delete');
-          getOtherCrudData();
-        }
-      })
-      .catch(function(error) {
+            $('#UpdateConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+            axios.post('/basicCrudUpdateClick', {
+                    id: id,
+                    full_name: name,
+                    email: email,
+                    mobile: mobile,
+                    address: address,
 
-      });
-  }
+                })
+                .then(function(response) {
+                    $('#UpdateConfirmBtn').html("Update");
+                    if (response.data == 1) {
+                        $('#editBasicCrudModal').modal('hide');
+                        toastr.success('Update Successfully');
+                        getBasicCrudData();
+                    } else {
+                        $('#editBasicCrudModal').modal('hide');
+                        toastr.error('Error in Update');
+                        getBasicCrudData();
+                    }
+                })
+                .catch(function(error) {});
+        }
+
+    }
+
+    // Show the image on the preview box
+    $('#imgInput').change(function() {
+        var reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onload = function(e) {
+            var imageSource = e.target.result;
+            $('#imgPreview').attr('src', imageSource);
+        }
+    });
+
+    // Click Photo Save Button
+    $('#photoAddBtn').on('click', function() {
+
+        var id = $('#ImgId').val();
+
+        $('#photoAddBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+
+        var photoFile = $('#imgInput').prop('files')[0];
+        var formData = new FormData();
+        formData.append('photo', photoFile); // photo is the key && photoFile is Value
+        var url = "/photoUp/" + id;
+
+        axios.post(url, formData)
+            .then(function(response) {
+
+                if (response.status == 200 && response.data == 1) {
+                    $('#photoModal').modal('hide');
+                    $('#photoAddBtn').html('Upload');
+                    toastr.success("Photo Upload Successfully");
+                    getOtherCrudData();
+                } else {
+                    $('#photoModal').modal('hide');
+                    $('#photoAddBtn').html('Upload');
+                    toastr.error("Photo Upload Failed");
+                    getOtherCrudData();
+                }
+
+            }).catch(function(error) {
+                alert(error);
+            })
+    });
+
+    //Add New Btn Clik
+    $('#adNewId').click(function() {
+        $('#addModal').modal('show');
+    });
+
+    $("#dob").datetimepicker({
+        format: 'Y-m-d',
+        timepicker: false,
+        closeOnDateSelect: true,
+        scrollInput: false,
+        inline: false
+    });
+
+
+    //Confirm Save
+    $('#AddBtnClickId').click(function() {
+        var username = $('#basiccrud_id').val();
+        var gender = $('input[name="gender"]:checked').val();
+        var speciality = $('input[type=checkbox]:checked').map(function(_, el) {
+            return $(el).val();
+        }).get();
+        var dob = $('#dob').val();
+
+        var speciality = speciality.toString();
+
+        // alert(dob);
+
+
+        othercrudAddClick(username, gender, speciality, dob);
+    })
+
+
+    // Method for Click Add Btn
+    function othercrudAddClick(username, gender, speciality, dob) {
+
+        if (gender.length == 0) {
+            alert('Gender Required');
+        } else {
+            $('#AddBtnClickId').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+            axios.post('/othercrudAdd', {
+
+                    username: username,
+                    gender: gender,
+                    speciality: speciality,
+                    dob: dob,
+
+                })
+                .then(function(response) {
+                    $('#AddBtnClickId').html("Add");
+                    if (response.data == 1) {
+                        $('#addModal').modal('hide');
+                        toastr.success('Save Successfully');
+                        getOtherCrudData();
+                    } else {
+                        $('#addModal').modal('hide');
+                        toastr.error('Error in Save');
+                        getOtherCrudData();
+                    }
+                })
+                .catch(function(error) {
+                    $('#addModal').modal('hide');
+                    toastr.error('Error in Save');
+                    getOtherCrudData();
+                });
+        }
+
+    }
+
+    //Confirm Delete
+    $('#DelConfirmBtn').click(function() {
+        var id = $('#DeleteId').val();
+        otherCrudDelete(id);
+    })
+
+    // Method for Confirm Delete Data
+    function otherCrudDelete(delid) {
+        //Animation
+        $('#DelConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
+
+        axios.post('/othercruddelete', {
+                id: delid
+            })
+            .then(function(response) {
+                $('#DelConfirmBtn').html("Delete");
+                if (response.data == 1) {
+                    $('#deleteModal').modal('hide');
+                    toastr.success('Delete Successfully');
+                    getOtherCrudData();
+                } else {
+                    $('#deleteModal').modal('hide');
+                    toastr.error('Error in Delete');
+                    getOtherCrudData();
+                }
+            })
+            .catch(function(error) {
+
+            });
+    }
 </script>
 @endsection

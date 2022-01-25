@@ -28,3 +28,4 @@ Route::get('/otherCrudData','CrudController@AllOtherCrudData');
 Route::post('/othercruddelete','CrudController@OtherCrudDelete');
 Route::post('/photoUp/{id}','CrudController@photoUpload');
 Route::post('/othercrudAdd','CrudController@OtherCrudAdd');
+Route::post('/otherCrudDetails','CrudController@otherCrudDetails');
