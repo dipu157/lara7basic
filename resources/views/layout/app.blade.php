@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/datatables.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/datatables-select.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.min.css') }}"  />
 </head>
 <body class="fix-header fix-sidebar">
     
@@ -26,6 +27,7 @@
 <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
 <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('js/sidebarmenu.js')}}"></script>
 <script src="{{asset('js/sticky-kit.min.js')}}"></script>
@@ -34,6 +36,7 @@
 <script src="{{asset('js/datatables-select.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
 <script src="{{asset('js/axios.min.js')}}"></script>
+
 
 @yield('script')
 </body>

@@ -137,12 +137,15 @@ class CrudController extends Controller
         $username = $req->input('username');
         $gender = $req->input('gender');
         $speciality = $req->input('speciality');
+        $dob = $req->input('dob');
+
 
 
         $result = OtherCrudModel::insert([
             'basiccrud_id'=>$username, 
             'gender'=>$gender,
-            'speciality'=>$speciality
+            'speciality'=>$speciality,
+            'dob'=>$dob
         ]);
         if($result == true){
             return 1;

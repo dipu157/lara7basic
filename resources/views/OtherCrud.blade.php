@@ -154,6 +154,7 @@
                                         DOB
                                     </label>
                                     <div class="col-sm-8">
+                                    <input type="text" name="dob" id="dob" class="form-control" value="{!! \Carbon\Carbon::now()->format('d-m-Y') !!}" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -336,6 +337,14 @@
     $('#addModal').modal('show');
   });
 
+  $( "#dob" ).datetimepicker({
+                format:'Y-m-d',
+                timepicker: false,
+                closeOnDateSelect: true,
+                scrollInput : false,
+                inline:false
+ });
+
 
   //Confirm Save
   $('#AddBtnClickId').click(function() {
@@ -344,16 +353,19 @@
     var speciality = $('input[type=checkbox]:checked').map(function(_, el) {
         return $(el).val();
     }).get();
+    var dob = $('#dob').val();
 
-    var speciality=speciality.toString();    
+    var speciality=speciality.toString();  
+    
+    // alert(dob);
 
 
-    othercrudAddClick(username, gender, speciality);
+    othercrudAddClick(username, gender, speciality, dob);
   })
 
 
   // Method for Click Add Btn
-  function othercrudAddClick(username, gender, speciality) {
+  function othercrudAddClick(username, gender, speciality, dob) {
 
     if (gender.length == 0) {
       alert('Gender Required');
@@ -364,6 +376,7 @@
           username: username,
           gender: gender,
           speciality: speciality,
+          dob: dob,
 
         })
         .then(function(response) {
