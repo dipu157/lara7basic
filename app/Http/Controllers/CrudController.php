@@ -159,8 +159,10 @@ class CrudController extends Controller
     function OtherCrudDetails(Request $req){
 
         $id = $req->input('id');
-        $data = json_encode(BasicCrudModel::where('id','=',$id)->get());
+        $result = json_encode(OtherCrudModel::with('BasicCrud')
+                            ->where('id','=',$id)
+                            ->get());
 
-        return $data;
+        return $result;
     }
 }

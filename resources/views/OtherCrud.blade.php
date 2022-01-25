@@ -63,13 +63,13 @@
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addModal" role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <!--Header-->
+         
             <div class="modal-header" style="background-color: #17A2B8;">
                 <p class="heading">
                     Add New
                 </p>
             </div>
-            <!--Body-->
+           
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -90,17 +90,16 @@
                                     <div class="col-sm-8">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="gender1" name="gender" type="radio" value="M">
-                                            <label class="form-check-label" for="gender1">
-                                                Male
-                                            </label>
+                                                <label class="form-check-label" for="gender1">
+                                                    Male
+                                                </label>
                                             </input>
                                         </div>
-                                        <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="gender2" name="gender" type="radio" value="F">
-                                            <label class="form-check-label" for="gender2">
-                                                Female
-                                            </label>
+                                                <label class="form-check-label" for="gender2">
+                                                    Female
+                                                </label>
                                             </input>
                                         </div>
                                     </div>
@@ -112,39 +111,38 @@
                                     <div class="col-sm-8">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality1" name="speciality[]" type="checkbox" value="PHP">
-                                            <label class="form-check-label" for="speciality1">
-                                                PHP
-                                            </label>
+                                                <label class="form-check-label" for="speciality1">
+                                                    PHP
+                                                </label>
                                             </input>
                                         </div>
-                                        <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality2" name="speciality[]" type="checkbox" value="MySql">
-                                            <label class="form-check-label" for="speciality2">
-                                                MySql
-                                            </label>
+                                                <label class="form-check-label" for="speciality2">
+                                                    MySql
+                                                </label>
                                             </input>
                                         </div>
-                                        <!-- Material inline 3 -->
+                     
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality3" name="speciality[]" type="checkbox" value="Java">
-                                            <label class="form-check-label" for="speciality3">
-                                                Java
-                                            </label>
+                                                <label class="form-check-label" for="speciality3">
+                                                    Java
+                                                </label>
                                             </input>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality4" name="speciality[]" type="checkbox" value="Oracle">
-                                            <label class="form-check-label" for="speciality4">
-                                                Oracle
-                                            </label>
+                                                <label class="form-check-label" for="speciality4">
+                                                    Oracle
+                                                </label>
                                             </input>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" id="speciality5" name="speciality" type="checkbox" value="Python">
-                                            <label class="form-check-label" for="speciality5">
-                                                Python
-                                            </label>
+                                                <label class="form-check-label" for="speciality5">
+                                                    Python
+                                                </label>
                                             </input>
                                         </div>
                                     </div>
@@ -154,7 +152,7 @@
                                         DOB
                                     </label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="dob" id="dob" class="form-control" value="{!! \Carbon\Carbon::now()->format('d-m-Y') !!}" readonly />
+                                        <input class="form-control" id="dob" name="dob" readonly="" type="text" value="{!! \Carbon\Carbon::now()->format('d-m-Y') !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -162,18 +160,19 @@
                     </div>
                 </div>
             </div>
-            <!--Footer-->
+ 
             <div class="modal-footer justify-content-center">
                 <a class="btn btn-danger waves-effect" data-dismiss="modal" type="button">
                     Cancel
                 </a>
-                <button class="btn btn-primary" type="button" class="btn btn-success" id="AddBtnClickId">
+                <button class="btn btn-success" id="AddBtnClickId" type="button">
                     Save
                 </button>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal For Edit  -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="editOtherCrudModal" role="dialog" tabindex="-1">
@@ -191,12 +190,15 @@
                     <div class="col-sm-12">
                         <div class="card text-primary bg-gray">
                             <div class="card-body">
+
+                              <input id="EditId" value="" type="text">
+
                                 <div class="form-group row" id="md-name">
                                     <label class="col-sm-4 col-form-label text-md-right" for="basiccrud_id">
                                         User Name
                                     </label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('basiccrud_id',$BasicCrud,$data->basiccrud_id,array('id'=>'basiccrud_id','class'=>'form-control d-block')) !!}
+                                        {{-- {!! Form::select('basiccrud_id',$BasicCrud,$data->basiccrud_id,array('id'=>'basiccrud_id','class'=>'form-control d-block')) !!} --}}
                                     </div>
                                 </div>
                                 <div class="form-group row" id="md-name">
@@ -204,7 +206,7 @@
                                         Gender
                                     </label>
                                     <div class="col-sm-8">
-                                        {!! Form::select('gender',['M' => 'Male', 'F' => 'Female'],$data->gender,array('id'=>'gender','class'=>'form-control d-block')) !!}
+                                        {{--  {!! Form::select('gender',['M' => 'Male', 'F' => 'Female'],$data->gender,array('id'=>'gender','class'=>'form-control d-block')) !!} --}}
                                     </div>
                                 </div>
                                 <div class="form-group row" id="md-name">
@@ -212,7 +214,6 @@
                                         Speciality
                                     </label>
                                     <div class="col-sm-8">
-                                       
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -220,7 +221,9 @@
                                         DOB
                                     </label>
                                     <div class="col-sm-8">
-                                        <input type="date" name="dob" class="form-control" id="dob" required value="{!! $data->dob !!}" />
+                                        {{--
+                                        <input class="form-control" id="dob" name="dob" required="" type="date" value="{!! $data->dob !!}"/>
+                                        --}}
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +236,7 @@
                 <a class="btn btn-danger waves-effect" data-dismiss="modal" type="button">
                     Cancel
                 </a>
-                <button class="btn btn-primary" type="button" class="btn btn-success" id="AddBtnClickId">
+                <button class="btn btn-success" id="AddBtnClickId" type="button">
                     Save
                 </button>
             </div>
@@ -253,8 +256,8 @@
             </div>
             <div class="modal-body">
                 <input id="imgInput" type="file">
-                <img id="imgPreview" src="" style="width: 100px; height: 100px;">
-                </img>
+                    <img id="imgPreview" src="" style="width: 100px; height: 100px;">
+                    </img>
                 </input>
             </div>
             <div class="modal-footer">
@@ -337,10 +340,10 @@
 
                     //Edit Icon
                     $('.EditBtn').click(function() {
-                        var id = $(this).data('id');
+                         var id = $(this).data('id');
 
-                        $('#EditId').val(id);
-                        OtherCrudUpdate(id);
+                         $('#EditId').val(id);
+                         otherCrudUpdate(id);
                         $('#editOtherCrudModal').modal('show');
                     })
 
@@ -366,78 +369,31 @@
     }
 
 
-    // Method for Edit Icon Click
-    function otherCrudUpdate(detailsid) {
+  // Method for Edit Icon Click
+  function otherCrudUpdate(detailsid) {
 
-        axios.post('/otherCrudDetails', {
-                id: detailsid
-            })
-            .then(function(response) {
-                if (response.status == 200) {
+    axios.post('/otherCrudDetails', {
+        id: detailsid
+      })
+      .then(function(response) {
+        if (response.status == 200) {
 
-                    var jsonData = response.data;
-                    $('#nameIdU').val(jsonData[0].full_name);
-                    $('#emailIdU').val(jsonData[0].email);
-                    $('#mobileIdU').val(jsonData[0].mobile);
-                    $('#addressIdU').val(jsonData[0].address);
+          var jsonData = response.data;
+          $('#nameIdU').val(jsonData[0].full_name);
+          $('#emailIdU').val(jsonData[0].email);
+          $('#mobileIdU').val(jsonData[0].mobile);
+          $('#addressIdU').val(jsonData[0].address);
 
-                } else {
-                    $('#errDiv').removeClass('d-none');
-                    $('#loadDiv').addClass('d-none');
-                }
-            })
-            .catch(function(error) {
-                $('#errDiv').removeClass('d-none');
-                $('#loadDiv').addClass('d-none');
-            });
-    }
-
-
-    //Confirm Edit
-    $('#UpdateConfirmBtn').click(function() {
-        var id = $('#EditId').val();
-        var name = $('#nameIdU').val();
-        var email = $('#emailIdU').val();
-        var mobile = $('#mobileIdU').val();
-        var address = $('#addressIdU').val();
-        UpdateClick(id, name, email, mobile, address);
-    })
-
-    // Method for Click Update Btn
-    function UpdateClick(id, name, email, mobile, address) {
-
-        if (name.length == 0) {
-            toastr.error('Name Required');
-        } else if (mobile.length == 0) {
-            toastr.error('mobile Required');
-        } else if (address.length == 0) {
-            toastr.error('address Required');
         } else {
-            $('#UpdateConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
-            axios.post('/basicCrudUpdateClick', {
-                    id: id,
-                    full_name: name,
-                    email: email,
-                    mobile: mobile,
-                    address: address,
-
-                })
-                .then(function(response) {
-                    $('#UpdateConfirmBtn').html("Update");
-                    if (response.data == 1) {
-                        $('#editBasicCrudModal').modal('hide');
-                        toastr.success('Update Successfully');
-                        getBasicCrudData();
-                    } else {
-                        $('#editBasicCrudModal').modal('hide');
-                        toastr.error('Error in Update');
-                        getBasicCrudData();
-                    }
-                })
-                .catch(function(error) {});
+          $('#errDiv').removeClass('d-none');
+          $('#loadDiv').addClass('d-none');
         }
-
-    }
+      })
+      .catch(function(error) {
+        $('#errDiv').removeClass('d-none');
+        $('#loadDiv').addClass('d-none');
+      });
+  } 
 
     // Show the image on the preview box
     $('#imgInput').change(function() {
