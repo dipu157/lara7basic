@@ -21,6 +21,7 @@
                         <li> <a href="{{url('/dashboard')}}" ><span> <i class="fas fa-home"></i> </span><span class="hide-menu">Home</span></a></li>
                         <li> <a href="{{url('/basiccrud')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Basic CRUD</span></a></li>
                         <li> <a href="{{url('/othercrud')}}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">Other CRUD</span></a></li>
+                        <li> <a href="{{url('/hrmcrud')}}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">HRM CRUD</span></a></li>
 					</ul>
                 </nav>
             </div>

@@ -181,7 +181,7 @@
             <!--Header-->
             <div class="modal-header" style="background-color: #17A2B8;">
                 <p class="heading">
-                    Edit User
+                    Update User
                 </p>
             </div>
             <!--Body-->
@@ -191,29 +191,78 @@
                         <div class="card text-primary bg-gray">
                             <div class="card-body">
 
-                              <input id="EditId" value="" type="text">
+                              <input id="EditId" value="" type="hidden">
 
                                 <div class="form-group row" id="md-name">
                                     <label class="col-sm-4 col-form-label text-md-right" for="basiccrud_id">
                                         User Name
                                     </label>
                                     <div class="col-sm-8">
-                                        {{-- {!! Form::select('basiccrud_id',$BasicCrud,$data->basiccrud_id,array('id'=>'basiccrud_id','class'=>'form-control d-block')) !!} --}}
+                                    {!! Form::select('basiccrud_idU',$BasicCrud,null,array('id'=>'basiccrud_idU','class'=>'form-control d-block')) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row" id="md-name">
                                     <label class="col-sm-4 col-form-label text-md-right" for="gender">
                                         Gender
                                     </label>
-                                    <div class="col-sm-8">
-                                        {{--  {!! Form::select('gender',['M' => 'Male', 'F' => 'Female'],$data->gender,array('id'=>'gender','class'=>'form-control d-block')) !!} --}}
+                                    <div class="col-sm-8" id="genderId">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="gender1" name="gender" type="radio" value="M">
+                                                <label class="form-check-label" for="gender1">
+                                                    Male
+                                                </label>
+                                            </input>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="gender2" name="gender" type="radio" value="F">
+                                                <label class="form-check-label" for="gender2">
+                                                    Female
+                                                </label>
+                                            </input>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row" id="md-name">
                                     <label class="col-sm-4 col-form-label text-md-right" for="speciality">
                                         Speciality
                                     </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8" id="special">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="speciality1" name="speciality[]" type="checkbox" value="PHP">
+                                                <label class="form-check-label" for="speciality1">
+                                                    PHP
+                                                </label>
+                                            </input>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="speciality2" name="speciality[]" type="checkbox" value="MySql">
+                                                <label class="form-check-label" for="speciality2">
+                                                    MySql
+                                                </label>
+                                            </input>
+                                        </div>
+                     
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="speciality3" name="speciality[]" type="checkbox" value="Java">
+                                                <label class="form-check-label" for="speciality3">
+                                                    Java
+                                                </label>
+                                            </input>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="speciality4" name="speciality[]" type="checkbox" value="Oracle">
+                                                <label class="form-check-label" for="speciality4">
+                                                    Oracle
+                                                </label>
+                                            </input>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="speciality5" name="speciality" type="checkbox" value="Python">
+                                                <label class="form-check-label" for="speciality5">
+                                                    Python
+                                                </label>
+                                            </input>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -221,9 +270,7 @@
                                         DOB
                                     </label>
                                     <div class="col-sm-8">
-                                        {{--
-                                        <input class="form-control" id="dob" name="dob" required="" type="date" value="{!! $data->dob !!}"/>
-                                        --}}
+                                        <input class="form-control" id="dob_idU" name="dob" readonly="" type="text" value=""/>
                                     </div>
                                 </div>
                             </div>
@@ -233,11 +280,11 @@
             </div>
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a class="btn btn-danger waves-effect" data-dismiss="modal" type="button">
+                <a class="btn btn-danger waves-effect" id="cancelBtn" data-dismiss="modal" type="button">
                     Cancel
                 </a>
-                <button class="btn btn-success" id="AddBtnClickId" type="button">
-                    Save
+                <button class="btn btn-success" id="UpdateBtnClickId" type="button">
+                    Update
                 </button>
             </div>
         </div>
@@ -379,10 +426,13 @@
         if (response.status == 200) {
 
           var jsonData = response.data;
-          $('#nameIdU').val(jsonData[0].full_name);
-          $('#emailIdU').val(jsonData[0].email);
-          $('#mobileIdU').val(jsonData[0].mobile);
-          $('#addressIdU').val(jsonData[0].address);
+          var speciality = jsonData[0].speciality;
+          var specialityArr = speciality.split(",");
+
+          $("#basiccrud_idU").val(jsonData[0].basiccrud_id);
+          $("input[name=gender][value=" + jsonData[0].gender + "]").prop('checked', true);
+          $("#special").find('[value=' + specialityArr.join('], [value=') + ']').prop("checked", true);
+          $("#dob_idU").val(jsonData[0].dob);
 
         } else {
           $('#errDiv').removeClass('d-none');
@@ -393,6 +443,13 @@
         $('#errDiv').removeClass('d-none');
         $('#loadDiv').addClass('d-none');
       });
+
+      //Cancel Icon
+      $('#cancelBtn').click(function() {
+        var a = $("#special").prop("checked", false);
+
+        console.log(a);
+     });
   } 
 
     // Show the image on the preview box
@@ -443,6 +500,14 @@
     });
 
     $("#dob").datetimepicker({
+        format: 'Y-m-d',
+        timepicker: false,
+        closeOnDateSelect: true,
+        scrollInput: false,
+        inline: false
+    });
+
+    $("#dob_idU").datetimepicker({
         format: 'Y-m-d',
         timepicker: false,
         closeOnDateSelect: true,
@@ -504,6 +569,8 @@
         }
 
     }
+
+    
 
     //Confirm Delete
     $('#DelConfirmBtn').click(function() {

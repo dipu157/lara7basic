@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +27,17 @@ Route::get('/otherCrudData','CrudController@AllOtherCrudData');
 Route::post('/othercruddelete','CrudController@OtherCrudDelete');
 Route::post('/photoUp/{id}','CrudController@photoUpload');
 Route::post('/othercrudAdd','CrudController@OtherCrudAdd');
+Route::post('/otherCrudUpdateBtnClick','CrudController@OtherCrudUpdate');
 Route::post('/otherCrudDetails','CrudController@otherCrudDetails');
+
+//HRM RELATED ROUTE
+
+Route::group(['prefix' => 'hrm', 'namespace' => 'Hrm'], function () {
+
+    //HRM Route
+
+    Route::get('hrmcrud',['as'=>'hrm/hrmcrud','uses' => 'HrmCrudController@hrmCrudIndex']);
+    Route::get('hrmCrudDataTable','HrmCrudController@hrmCrudData'); // Data Table Roure
+
+});
+

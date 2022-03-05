@@ -91,7 +91,7 @@ class CrudController extends Controller
 
         $data = OtherCrudModel::all();
 
-       // dd($BasicCrud);
+        //dd($data);
 
     	return view('OtherCrud',compact('BasicCrud','data'));
     }
@@ -164,5 +164,28 @@ class CrudController extends Controller
                             ->get());
 
         return $result;
+    }
+
+    function OtherCrudUpdate(Request $req){
+
+        $id = $req->input('id');
+        $username = $req->input('username');
+        $gender = $req->input('gender');
+        $speciality = $req->input('speciality');
+        $dob = $req->input('dob');
+
+
+        $result = OtherCrudModel::where('id','=',$id)->update([
+        	'basiccrud_id'=>$username, 
+            'gender'=>$gender,
+            'speciality'=>$speciality,
+            'dob'=>$dob
+        ]);
+        if($result == true){
+            return 1;
+        }else{
+            return 0;
+        }
+
     }
 }

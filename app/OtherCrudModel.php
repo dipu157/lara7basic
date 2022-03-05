@@ -7,10 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class OtherCrudModel extends Model
 {
     public $table='othercrud';
-	public $primaryKey='id';
-	public $incrementing=true;
-	public $keyType='int';
-	public  $timestamps=false;
+
+	protected $guarded = ['id', 'created_at','updated_at'];
+
+    protected $fillable = [
+        'basiccrud_id',
+        'gender',
+        'speciality',
+        'dob',
+        'photo',
+        'status',
+    ];
 
 	public function BasicCrud()
     {
