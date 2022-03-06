@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('pagetitle')
     <h2 class="no-margin-bottom">Hrm Crud</h2>
@@ -45,9 +45,10 @@
 
 @endsection
 
-@push('scripts')
+@section('script')
 
-    <script>
+    <script type="text/javascript">
+
         $(function() {
             var table= $('#hrmCrud-table').DataTable({
                 processing: true,
@@ -60,6 +61,7 @@
                     { data: 'email', name: 'email' },
                     { data: 'dob', name: 'dob' },
                     { data: 'gender', name: 'gender' },
+                    { data: 'photo', name: 'photo' },
                     { data: 'action', name: 'action', orderable: false, searchable: false, printable: false}
                 ]
             });
@@ -81,6 +83,14 @@
             });
         });
 
+        $( "#dob" ).datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false,
+            closeOnDateSelect: true,
+            scrollInput : false,
+            inline:false
+        });
+
     </script>
 
-@endpush
+@endsection

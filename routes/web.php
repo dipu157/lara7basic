@@ -32,7 +32,7 @@ Route::post('/otherCrudDetails','CrudController@otherCrudDetails');
 
 //HRM RELATED ROUTE
 
-Route::group(['prefix' => 'hrm', 'namespace' => 'Hrm'], function () {
+Route::group(['prefix' => 'hrm'], function () {
 
     //HRM Route
 

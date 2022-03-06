@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\HrmCrudModel;
 use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
 
 class HrmCrudController extends Controller
 {
@@ -16,7 +17,7 @@ class HrmCrudController extends Controller
 
     public function hrmCrudData()
     {
-        $hrmcruddata = HrmCrudModel::query()->where('company_id',$this->getCompanyId())
+        $hrmcruddata = HrmCrudModel::query()->where('status',true)
             ->orderBy('created_at','DESC')
             ->get();
 
@@ -33,7 +34,8 @@ class HrmCrudController extends Controller
                         data-name="'. $hrmcruddata->name . '" 
                         data-email="'. $hrmcruddata->email . '" 
                         data-dob="'. $hrmcruddata->dob . '" 
-                        data-email="'. $hrmcruddata->email . '" 
+                        data-gender="'. $hrmcruddata->gender . '"
+                        data-photo="'. $hrmcruddata->photo . '" 
                         type="button" href="#modal-edit-hrmcrud" data-target="#modal-edit-hrmcrud" data-toggle="modal" class="btn btn-sm btn-hrmcrud-edit btn-primary pull-center"><i class="fa fa-edit" >Edit</i></button>
                         
                      </div>
