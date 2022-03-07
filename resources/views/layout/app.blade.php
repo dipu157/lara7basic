@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/datatables.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/datatables-select.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.min.css') }}"  />
+    <link href="{!! asset('css/bootstrap-imageupload.css') !!}" rel="stylesheet" type="text/css" />
 </head>
 <body class="fix-header fix-sidebar">
     
@@ -36,6 +37,7 @@
 <script src="{{asset('js/datatables-select.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
 <script src="{{asset('js/axios.min.js')}}"></script>
+<script type="text/javascript" src="{!! asset('js/bootstrap-imageupload.js') !!}"></script>
 
 
 @yield('script')

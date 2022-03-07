@@ -61,24 +61,13 @@
                                     </div>
 
                                     <div class="form-group row">
-                                    <label for="dob" class="col-sm-4 col-form-label text-md-right">Gender</label>
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="gender1" name="gender" type="radio" value="M">
-                                                <label class="form-check-label" for="gender1">
-                                                    Male
-                                                </label>
-                                            </input>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="gender2" name="gender" type="radio" value="F">
-                                                <label class="form-check-label" for="gender2">
-                                                    Female
-                                                </label>
-                                            </input>
+                                        <label for="gender" class="col-sm-4 col-form-label text-md-right">Gender</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-3">
+                                                {!! Form::select('gender',['M' => 'Male', 'F' => 'Female'],null,array('id'=>'gender','class'=>'form-control d-block')) !!}
+                                            </div>                                            
                                         </div>
                                     </div>
-                                </div>
 
                                 </div>
                             </div>
@@ -98,52 +87,3 @@
     </div>
 </div>
 <!-- Modal: modalAbandonedCart-->
-<script type="text/javascript">
-    
-    $( function() {
-        $('#hrmCrud-add-form').on("submit", function (e) {
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-
-            var url = 'newhrmCrudSave';
-            // confirm then
-
-            $.ajax({
-                url: url,
-                type: 'POST',
-                dataType: 'json',
-                data: $(this).serialize(),
-
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                },
-
-                success: function (data) {
-
-                    $('#hrmCrud-table').DataTable().draw(false);
-                    $('#modal-new-hrmCrud').modal('hide');
-                },
-
-            }).always(function (data) {
-                $('#hrmCrud-table').DataTable().draw(false);
-            });
-        });
-
-
-        $( "#dob" ).datetimepicker({
-            format: 'Y-m-d',
-            timepicker: false,
-            closeOnDateSelect: true,
-            scrollInput : false,
-            inline:false
-        });
-
-    } );
-
-
-</script>

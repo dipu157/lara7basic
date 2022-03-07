@@ -169,16 +169,14 @@ class CrudController extends Controller
     function OtherCrudUpdate(Request $req){
 
         $id = $req->input('id');
-        $username = $req->input('username');
+        $basiccrud_id = $req->input('user');
         $gender = $req->input('gender');
-        $speciality = $req->input('speciality');
         $dob = $req->input('dob');
 
 
         $result = OtherCrudModel::where('id','=',$id)->update([
-        	'basiccrud_id'=>$username, 
+        	'basiccrud_id'=>$basiccrud_id, 
             'gender'=>$gender,
-            'speciality'=>$speciality,
             'dob'=>$dob
         ]);
         if($result == true){

@@ -38,6 +38,11 @@ Route::group(['prefix' => 'hrm'], function () {
 
     Route::get('hrmcrud',['as'=>'hrm/hrmcrud','uses' => 'HrmCrudController@hrmCrudIndex']);
     Route::get('hrmCrudDataTable','HrmCrudController@hrmCrudData'); // Data Table Roure
+    Route::post('newhrmCrudSave',['as'=>'hrm/newhrmCrudSave','uses' => 'HrmCrudController@create']);
+    Route::post('image/save',['as'=>'hrm/image/save','uses' => 'HrmCrudController@updateImage']);
+    Route::post('hrmCrudUpdate',['as'=>'hrm/hrmCrudUpdate','uses' => 'HrmCrudController@update']);
+    Route::post('hrmCrudDelete',['as'=>'hrm/hrmCrudDelete','uses' => 'HrmCrudController@Delete']);
+   // Route::post('hrm/hrmCrudUpdate', 'HrmCrudController@update');
 
 });
 
