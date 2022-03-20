@@ -12,8 +12,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('Home'); });
-Route::get('/dashboard', function () { return view('Home'); });
+Route::get('/', 'HomeController@loginIndex');
+Route::post('/login', 'LoginController@onLogin');
+Route::get('/logout', 'LoginController@onLogOut');
+
+Route::get('/register', 'LoginController@register');
+Route::post('/userRegister', 'LoginController@userRegister');
+
+Route::get('/dashboard', 'HomeController@HomeIndex')->middleware('loginCheck');
 
 Route::get('/basiccrud','CrudController@basicCrudIndex');
 Route::get('/basicCrudData','CrudController@AllBasicCrudData');
@@ -46,3 +52,7 @@ Route::group(['prefix' => 'hrm'], function () {
 
 });
 
+
+// Multiple Data to Multiple Table
+
+Route::get('/multiTable','MultiTableController@index');

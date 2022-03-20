@@ -5,7 +5,7 @@
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <li class="nav-item "> <a class="nav-link nav-toggler  hidden-md-up  waves-effect waves-dark" href="javascript:void(0)"><i class="fas  fa-bars"></i></a></li>
                         <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="fas fa-bars"></i></a> </li> 
-                     <li class="nav-item mt-3">ADMIN</li>
+                     <li class="nav-item mt-3">{{ Session::get('user') }}</li>
 					</ul>
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item"><a href="{{url('/logout')}}" class="btn btn-sm btn-danger">Logout</a></li>
@@ -22,6 +22,8 @@
                         <li> <a href="{{url('/basiccrud')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Basic CRUD</span></a></li>
                         <li> <a href="{{url('/othercrud')}}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">Other CRUD</span></a></li>
                         <li> <a href="{!! route('hrm/hrmcrud') !!}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">HRM CRUD</span></a></li>
+                        <li> <a href="{!! url('/singleTable') !!}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">Single Table</span></a></li>
+                        <li> <a href="{!! url('/multiTable') !!}" ><span> <i class="far fa-address-book"></i> </span><span class="hide-menu">Multi Table</span></a></li>
 					</ul>
                 </nav>
             </div>
